@@ -1,0 +1,56 @@
+if (isModuleDebug.toBoolean()) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+
+    defaultConfig {
+        if (isModuleDebug.toBoolean()) {
+            applicationId "com.example.login"
+        }
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        javaCompileOptions {
+            //需要在每个页面都添加以下依赖，否则即使路由配置正确，也会报错：找不到匹配路由
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    resourcePrefix "login_"
+    sourceSets {
+        main {
+            //在需要单独调试的module的src/main目录下新建manifest目录和AndroidManifest文件
+            // 单独调试与集成调试时使用不同的 AndroidManifest.xml 文件
+            if (isModuleDebug.toBoolean()) {
+                manifest.srcFile "src/main/manifest/AndroidManifest.xml"
+            } else {
+                manifest.srcFile "src/main/AndroidManifest.xml"
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':base')
+    //需要在每个页面都添加以下依赖，否则即使路由配置正确，也会报错：找不到匹配路由
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+}
