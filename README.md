@@ -1,2 +1,7 @@
 # Component
 创建一个组件化设计的项目
+1、为了实现单独调试组件而创建manifest目录和AndroidManifest.xml时，manifest应该在main目录下，创建的时候如果选择资源文件夹类型创建后会自动放在res目录下；AndroidManifest.xml创建时注意名字不要写错， 同时创建文件的类型直接选择file，如果选择xml类型则无法创建，因为andorid不允许资源文件名大写。
+
+2、通过布尔值变量来控制组件单独调试的时候只需要在每一个组件目录下手动创建一个gradle.properties文件，然后将变量定义好就可以了，然后在该module的gradle中就可以使用变量控制执行逻辑了。对于app module 不用设置该变量，因为只设置一个变量是无法控制是否依赖所有的组件的。当有其它组件设置成启动类型时，运行app会报错(如果app依赖了启动类型的组件的话)。
+
+3、可以设置app module中对其它module的依赖为runtimeOnly，这样在代码运行前是不能访问依赖module中的代码的，只有应用运行时才可以访问，从而进一步实现组件间隔离的设计思想。
