@@ -6,11 +6,14 @@ import android.util.Log;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.base.ILoginDataProvider;
 import com.example.base.RouterPaths;
+import com.example.base.model.UserInfo;
 
 @Route(path = RouterPaths.LOGIN_PROVIDER)
 public class LoginDataProvider implements ILoginDataProvider {
 
     private String accountId;
+    private UserInfo userInfo;
+
     @Override
     public String getLoginAccountId() {
         return accountId;

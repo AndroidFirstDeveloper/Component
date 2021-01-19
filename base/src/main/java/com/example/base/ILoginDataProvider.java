@@ -1,6 +1,7 @@
 package com.example.base;
 
 import com.alibaba.android.arouter.facade.template.IProvider;
+import com.example.base.model.UserInfo;
 
 
 /**
