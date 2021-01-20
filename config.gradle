@@ -1,0 +1,20 @@
+ext {
+
+    isLoginApplication = false//登录模块开关 false作为lib组件存在  true作为application组件存在
+    isShareApplication = false//登录模块开关 false作为lib组件存在  true作为application组件存在
+    android = [
+            compileSdkVersion: 26,
+            buildToolsVersion: "26.0.2",
+            minSdkVersion    : 19,
+            targetSdkVersion : 26,
+            versionCode      : 1,
+            versionName      : "1.0"
+    ]
+    version = [
+            appcompatv7Version: "26.1.0"
+    ]
+
+    dependences = [
+            "appcompat-v7": "com.android.support:appcompat-v7:${version["appcompatv7Version"]}"
+    ]
+}
