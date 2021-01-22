@@ -32,6 +32,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(path: ':base')
-    runtimeOnly project(path: ':share')
-    runtimeOnly project(path: ':login')
+    if(!rootProject.ext.isModule){
+        runtimeOnly project(path: ':share')
+        runtimeOnly project(path: ':login')
+    }
 }

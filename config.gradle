@@ -1,5 +1,6 @@
 ext {
 
+    isModule = false
     isLoginApplication = false//登录模块开关 false作为lib组件存在  true作为application组件存在
     isShareApplication = false//登录模块开关 false作为lib组件存在  true作为application组件存在
     android = [
